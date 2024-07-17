@@ -11,23 +11,87 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="main">
       <div class="main-child">
-        <h1 class="poppins-regular">TO-DO LIST</h1>
+        <div class="heading">
+          <h1 class="poppins-regular">TO-DO LIST</h1>
+        </div>
         <p class="paragraph">Get your to do list here...</p>
 
         <div class="form">
-          <form action="" class="search-form">
-            <input type="text" id="search-box" name="search" /><br /><br />
-            <input type="submit" value="Add Task" id="search-button" />
-          </form>
-          <form action="" class="add-task">
-            <input type="submit" value="Task 1" id="add-task-button" />
-          </form>
+          <div action="" class="input-form">
+            <div class="input-box">
+              <input
+                type="text"
+                id="input-box1"
+                name="input"
+                placeholder="Title.."
+              />
+            </div>
+            <div id="button1">
+              <input
+                type="submit"
+                value="Add Task"
+                class="add-task-button"
+                onclick="newElement()"
+              />
+            </div>
+          </div>
         </div>
+
+        <ul id="myUL">
+          <li>
+            Hit the gym
+            <button onClick="deleteTask(this)" class="delete-task-btn">
+              Delete
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
+
+    <script>
+      var taskList = [];
+
+      function newElement() {
+        var inputValue = document.getElementById("input-box1").value;
+
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("input-box1").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        var button = document.createElement("button");
+        button.onclick = function () {
+          deleteTask(this);
+        };
+        button.innerHTML = "Delete";
+        button.className = "delete-task-btn";
+
+        li.appendChild(button);
+
+        var delete_button;
+        if (inputValue === "") {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("input-box1").value = "";
+      }
+
+      function deleteTask(item) {
+        var li = item.parentNode;
+        li.remove();
+      }
+
+      // function call() {
+      //   console.log("Button clicked");
+      // }
+    </script>
   </body>
 </html>
