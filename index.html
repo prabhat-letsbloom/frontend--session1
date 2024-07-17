@@ -66,6 +66,7 @@
         var inputValue = document.getElementById("input-box1").value;
         var t = document.createTextNode(inputValue);
         li.appendChild(t);
+        //li.prepend(t);
         var button = document.createElement("button");
         button.onclick = function () {
           deleteTask(this);
@@ -79,7 +80,7 @@
         if (inputValue === "") {
           alert("You must write something!");
         } else {
-          document.getElementById("myUL").appendChild(li);
+          document.getElementById("myUL").prepend(li);
         }
         document.getElementById("input-box1").value = "";
       }
